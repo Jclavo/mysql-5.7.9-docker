@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    mysql-db:
+      container_name: mydb-mysql
+      image: mysql-5.7.9
+      build: .
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: toor
+      ports:
+        - 3307:3306
+      volumes:
+        - ./conf.d/my.cnf:/etc/my.cnf # conf file
+        - ./data:/var/lib/mysql
+        - ./scripts:/docker-entrypoint-initdb.d # run scripts inmediatly
